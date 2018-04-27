@@ -1,0 +1,67 @@
+body {
+    background: #f05053;
+}
+
+.burger {
+    background: url("../images/burgersbg.png");
+}
+.donuts {
+    background: url("../images/donuts.png");
+}
+.frenchfries {
+    background: url("../images/frenchfriesbg.jpg");
+}
+.pasta {
+    background: url("../images/pastabg.jpg");
+}
+.pizza {
+    background: url("../images/pizzbg.jpg");
+}
+.ramen {
+    background: url("../images/ramenbg.png");
+}
+.sushi {
+    background: url("../images/sushibg.jpg");
+}
+.taco {
+    background: url("../images/tacobg.jpg");
+}
+
+.container {
+    background: rgb(255, 255, 255, .9);
+    padding-bottom: 30px;
+    max-width: 60%;
+}
+
+.buttons-div {
+    text-align: center;
+}
+
+button {
+    margin-top: 30px;
+    margin-right: 10px;
+}
+
+input {
+    width: 570px;
+}
+
+.gifs {
+    margin-top: 50px;
+}
+
+.gifs img {
+    max-width: 300px;
+}
+
+p {
+    margin: 0 auto;
+}
+
+.badge {
+    display: block;
+    width: 100px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
