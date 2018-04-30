@@ -2,16 +2,24 @@ $(document).ready(function() {
     var topics = ["burgers", "donuts", "fries", "pasta", "pizza", "ramen", "sushi", "taco"];
 
     var API_KEY = "dkmUWicXaTG4H8R9Ozeadr42wal9PGs0";
-    var requestURL = "https://api.giphy.com/v1/gifs/search?api_key=" + API_KEY + "&g=&limit=10&q=";
+    var requestURL = "https://api.giphy.com/v1/gifs/search?api_key=" + API_KEY + "&g=&limit=25&q=";
     // query string followed by ? and key=value
 
-    for (var i = 0; i < topics.length; i++) {
-        var button = $("<button>"); // create buttons in html
-        button.addClass("btn btn-info topic"); // add bootstrap classes to button
-        button.text(topics[i]); // add texts from the topics array to buttons
-        $("#buttons").append(button); // append to display onto screen
+    function emptyDiv() {
+        $("#buttons").empty(); // empties out div before adding new topic
+    };
 
+    function makeTopicButtons() {
+        for (var i = 0; i < topics.length; i++) {
+            var button = $("<button>"); // create buttons in html
+            button.addClass("btn btn-info topic"); // add bootstrap classes to button
+            button.text(topics[i]); // add texts from the topics array to buttons
+            $("#buttons").append(button); // append to display onto screen
+
+        }
     }
+    makeTopicButtons();
+
     function createImageDiv(response, i) {
         var img = $("<img class='giphy-img'>");
         // set the src of the element
@@ -26,16 +34,8 @@ $(document).ready(function() {
     // event delegation: document is recipient of the click function, anything with class=topic is delegated
     $(document).on("click", ".topic", function() {
         var buttonText = $(this).text();
-
-        $.get("./assets/images/" + buttonText + "bg.png")
-            .done(function() { 
-                $("body").css("background-image", "url('./assets/images/" + buttonText + "bg.png')");
-            }).fail(function() { 
-                $("body").css("background-image", "url('./assets/images/" + buttonText + "bg.jpg')");
-            })
-
-        
-
+        $("body").css("background-image", "url('./assets/images/" + buttonText + "bg.jpg')"); // changes bg for the buttons
+        $("body").css("background-attachment", "fixed"); // fixes background image
 
         $("#gifs").empty(); // every time you click a button, clean the page out to get new gifs of new button
         $.ajax({
@@ -70,5 +70,13 @@ $(document).ready(function() {
             // change the src to still version
             $(this).attr("src", $(this).attr("data-animated"));
         } 
+    });
+
+    $(".add-new").on("click", function() {
+        var newTopic = $("#new-topic").val();
+        topics.push(newTopic);
+        $("#new-topic").val("");
+        emptyDiv();
+        makeTopicButtons();
     });
 });
